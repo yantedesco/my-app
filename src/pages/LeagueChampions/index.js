@@ -1,9 +1,10 @@
 import "../../App.css";
-import { Card } from "../../components";
+import { Botao, Card } from "../../components";
 import { data } from "../../data/champions";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const LeagueChampions = () => {
+  const history = useHistory();
   return (
     <div className="container">
       <header>
@@ -20,7 +21,7 @@ export const LeagueChampions = () => {
           />
         ))}
       </div>
-      <Link to="/quem-somos">Quem Somos</Link>
+      <Botao nome="Quem Somos" onClick={() => history.push("/quem-somos")} />
     </div>
   );
 };
