@@ -6,8 +6,8 @@ const Card = ({ nome, tags, imagem }) => {
       <CardBody>
         <CardTitle>{nome}</CardTitle>
         <CardItem>
-          {tags.map((tag) => (
-            <Tag>{tag}</Tag>
+          {tags.map((tag, index) => (
+            <Tag key={index}>{tag}</Tag>
           ))}
         </CardItem>
         <CardItem>
