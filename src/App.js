@@ -1,23 +1,17 @@
-import { useState } from "react";
-import "./App.css";
-import { Botao } from "./components/Botao";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { LeagueChampions } from "./pages/LeagueChampions";
+import { NotFound } from "./pages/NotFound";
+import { QuemSomos } from "./pages/QuemSomos";
 
 function App() {
-  const [contador, setContador] = useState(0);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <div>
-          <h2>Contador</h2>
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <Botao nome="+ 1" onClick={() => setContador(contador + 1)} />
-            <Botao nome="- 1" onClick={() => setContador(contador - 1)} />
-          </div>
-          <h3 className="resultadoado">{contador}</h3>
-        </div>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={LeagueChampions} exact />
+        <Route path="/quem-somos" component={QuemSomos} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Botao = (props) => {
+const Botao = (props) => {
   const estiloBotao = {
     backgroundColor: "#d1d1d1",
     color: "#1d1d1d",
@@ -22,3 +22,5 @@ export const Botao = (props) => {
     </button>
   );
 };
+
+export default Botao;
