@@ -10,7 +10,7 @@ export const Home = () => {
   useEffect(() => {
     const user = "Facebook";
     const pegarDados = async () => {
-      const resposta = await API.post(`/users/${user}`);
+      const resposta = await API.get(`/users/${user}`);
       setUsuario(resposta.data);
     };
     pegarDados();
