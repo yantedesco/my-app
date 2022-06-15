@@ -1,28 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Botao } from "../../components";
-import axios from "axios";
+import { API } from "../../services/api";
 
 export const Home = () => {
   const history = useHistory();
-  const [dado, setDado] = useState();
+  const [usuario, setUsuario] = useState({ login: "", name: "" });
 
-  const pegarDados = async () => {
-    try {
-      const resposta = await axios.get("/users/yantedesco");
-      setDado(resposta.data);
-    } catch (erro) {
-      console.log(erro.message);
-    }
-  };
+  useEffect(() => {
+    const user = "Facebook";
+    const pegarDados = async () => {
+      const resposta = await API.post(`/users/${user}`);
+      setUsuario(resposta.data);
+    };
+    pegarDados();
+  }, []);
 
   return (
     <>
       <h1>HOME</h1>
-      <h2>{dado?.name}</h2>
+      <h1 style={{ marginLeft: 200 }}>{usuario.name}</h1>
       <Botao nome="Champions" onClick={() => history.push("/champions")} />
       <Botao nome="Quem Somos" onClick={() => history.push(`/quem-somos/`)} />
-      <Botao nome="Pegar Dados" onClick={pegarDados} />
     </>
   );
 };
