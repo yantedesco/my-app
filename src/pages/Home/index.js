@@ -1,25 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Botao } from "../../components";
-import { API } from "../../services/api";
+import { DataContext } from "../../context/data";
 
 export const Home = () => {
   const history = useHistory();
-  const [usuario, setUsuario] = useState({ login: "", name: "" });
-
-  useEffect(() => {
-    const user = "Facebook";
-    const pegarDados = async () => {
-      const resposta = await API.get(`/users/${user}`);
-      setUsuario(resposta.data);
-    };
-    pegarDados();
-  }, []);
+  const { nome, handleSetNome } = useContext(DataContext);
 
   return (
     <>
       <h1>HOME</h1>
-      <h1 style={{ marginLeft: 200 }}>{usuario.name}</h1>
+      <label style={{ fontSize: 40 }}>Nome</label>
+      <input
+        style={{ fontSize: 40 }}
+        type="text"
+        value={nome || ""}
+        onChange={(evento) => handleSetNome(evento)}
+      />
+      <br />
       <Botao nome="Champions" onClick={() => history.push("/champions")} />
       <Botao nome="Quem Somos" onClick={() => history.push(`/quem-somos/`)} />
     </>
